@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
-public class upTargetLooker : MonoBehaviour
+public class Orbit : MonoBehaviour
 {
     private Vector3 direction;
-    public GameObject upTarget;
-     public float speed = 1f;
-    
+    public GameObject target;
+    public float speed = 1.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,9 +14,10 @@ public class upTargetLooker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = upTarget.transform.position - transform.forward;
+        direction = target.transform.position - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * speed);
 
+        transform.Translate(0, 0, 1);
         
     }
 }
